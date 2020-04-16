@@ -6,6 +6,13 @@ import "./styles/footer.scss";
 import "./styles/form.scss";
 import "./styles/header.scss";
 
+window.addEventListener('load', (event) => {
+    console.log('Page has been loaded')
+
+    const submit = document.getElementById('submit')
+    submit.addEventListener('click', Client.handleSubmit)
+});
+
 export {
     handleSubmit
 }
