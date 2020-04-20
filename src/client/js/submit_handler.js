@@ -25,8 +25,8 @@ function handleSubmit(event) {
     .then(res => res.json())
     .then(function(res) {
         let location = {
-            longitude: res.postalCodes[0].lng,
-            latitude: res.postalCodes[0].lat,
+            longitude: res.geonames[0].lng,
+            latitude: res.geonames[0].lat,
         }
         console.log(location); //debug: remove
 
@@ -39,7 +39,30 @@ function handleSubmit(event) {
         .then(res => res.json())
         .then(function(res) {
             console.log(res); //debug: remove
-            data = res.data;
+            let forecast = [];
+            
+            var i;
+            for (i = 0; i < res.data.length; i++) {
+                let forecast_date = res.data[i].datetime;
+                let forecast_max = Math.round(res.data[i].max_temp * 9 / 5 + 32);
+                let forecast_min = Math.round(res.data[i].low_temp * 9 / 5 + 32);
+
+                let new_record = `${forecast_date}   Max: ${forecast_max}   Min: ${forecast_min}`
+                forecast.push(new_record)
+            }
+            console.log(forecast);
+        })
+        .then(function() {
+            fetch("http://localhost:8081/pixabay", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(destination)
+            })
+            .then(res => res.json())
+            .then(function(res) {
+                console.log(res); //debug: remove
+            })
         })
     })
 }
