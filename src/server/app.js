@@ -36,10 +36,17 @@ app.post("/geo", function (req, res) {
 })
 
 app.post("/weather", function (req, res) {
-    let longitude = req.body.longitude
-    let latitude = req.body.latitude
-    let url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_KEY}`
+    let longitude = req.body.longitude;
+    let latitude = req.body.latitude;
+    let api = req.body.api;
+    let url = "";
 
+    if (api == "current") {
+        url = `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_KEY}`
+    } else {
+        url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_KEY}`
+    }
+    
     console.log(url)
     axios.get(url)
     .then(function(response) {
