@@ -1,4 +1,4 @@
-function addTrip() {
+function addTrip(dest, start, weath, image, days_diff) {
     //initialize new DocumentFragment to build new trip
     let trip_frag = new DocumentFragment();
 
@@ -9,7 +9,13 @@ function addTrip() {
     //append image to the new trip div
     let image_div = document.createElement('div');
     image_div.classList.add("left");
-    image_div.textContent = "image";
+
+    let image_pic = document.createElement('img');
+    image_pic.setAttribute("src", image);
+    image_pic.setAttribute("height", "300");
+    image_pic.setAttribute("width", "450");
+
+    image_div.appendChild(image_pic);
     trip_div.appendChild(image_div);
 
 
@@ -18,19 +24,32 @@ function addTrip() {
     details_div.classList.add("right");
 
     let destination = document.createElement('div');
-    destination.textContent = "My trip to: Paris, France";
+    destination.textContent = "Upcoming trip to: " + dest.placename;
     details_div.appendChild(destination);
 
     let departing = document.createElement('div');
-    departing.textContent = "Departing: 02/12/2020";
+    departing.textContent = "Starts on: " + start;
     details_div.appendChild(departing);
 
     let countdown = document.createElement('div');
-    countdown.textContent = "Paris, France is 220 days away";
+    countdown.textContent = "Only " + days_diff + " days away!!";
     details_div.appendChild(countdown);
 
     let weather = document.createElement('div');
-    weather.textContent = "Weather forecast:";
+    if (weath.length > 1) {
+        var i;
+        var text = "";
+        for (i = 0; i < 5; i++) {
+            if (i == 0) {
+                text = text + weath[i];
+            }
+            text = text + "\n" + weath[i]
+        }
+        weather.innerText = "Upcoming forecast: \n" + text;
+    } else {
+        weather.textContent = weath;
+    }
+    
     details_div.appendChild(weather);
 
     let button_div = document.createElement('div');

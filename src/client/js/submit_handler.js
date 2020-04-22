@@ -19,11 +19,10 @@ function handleSubmit(event) {
 
     // To calculate the time difference of two dates 
     // To calculate the no. of days between two dates 
-    //var time_diff = parseDate(start_date).getTime() - parseDate(start_date).getTime(); 
-    //var days_diff = time_diff / (1000 * 3600 * 24); 
-    //console.log(days_diff);
-
-    var days_diff = 7;
+    var now = new Date().getTime();
+    var time_diff = parseDate(start_date).getTime() - now; 
+    var days_diff = Math.round(time_diff / (1000 * 3600 * 24)); 
+    console.log(days_diff);
 
     let weather_api = "";
 
@@ -77,7 +76,7 @@ function handleSubmit(event) {
                     let forecast_max = Math.round(res.data[i].max_temp * 9 / 5 + 32);
                     let forecast_min = Math.round(res.data[i].low_temp * 9 / 5 + 32);
 
-                    let new_record = `${forecast_date}   Max: ${forecast_max}   Min: ${forecast_min}`
+                    let new_record = `${forecast_date.slice(5)}   Max: ${forecast_max}   Min: ${forecast_min}`
                     weather.push(new_record)
                 }
             }
@@ -98,8 +97,10 @@ function handleSubmit(event) {
                 image = res.hits[0].webformatURL;
                 console.log(image);
             })
+            .then(function() {
+                Client.addTrip(destination, start_date, weather, image, days_diff);
+            })
         })
-        .then(Client.addTrip())
     })
 }
 
