@@ -1,4 +1,5 @@
-function remove_trip() {
-    const select_trip = document.querySelector("#trip1");
-    select_trip.remove();
+function removeTrip(element) {
+    element.parentNode.parentNode.parentNode.remove();
 }
+
+export { removeTrip }

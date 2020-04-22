@@ -1,6 +1,7 @@
 import "@babel/polyfill";
 import { handleSubmit } from "./js/submit_handler";
 import { addTrip } from "./js/add_trip";
+import { removeTrip } from "./js/remove_trip";
 
 import "./styles/base.scss";
 import "./styles/footer.scss";
@@ -16,5 +17,6 @@ window.addEventListener('load', (event) => {
 
 export {
     handleSubmit,
-    addTrip
+    addTrip,
+    removeTrip
 }
