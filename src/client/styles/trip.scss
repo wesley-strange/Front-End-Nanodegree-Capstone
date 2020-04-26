@@ -1,3 +1,5 @@
+/* Mobile first (less than 600px) */
+
 .trip_post {
     display: grid;
     width: 100%;
@@ -10,10 +12,9 @@
     justify-self: center;
     box-shadow: 0 4px 8px 0 darkslategrey;
     transition: 0.3s;
-}
-
-.trip_post:hover {
-    box-shadow: 0 8px 16px 0 darkslategrey;
+    &:hover {
+        box-shadow: 0 8px 16px 0 darkslategrey;
+    }
 }
 
 .left {
@@ -29,4 +30,38 @@
 
 .trip {
     margin-left: 15px
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+/* Small-to-Medium screens */
+
+@media(min-width: 600px) and (max-width: 749px){
+    .trip_post {
+        border: 5px solid red;
+    }
+}
+
+
+/* Medium screens */
+
+@media(min-width: 750px) and (max-width: 899px){
+    
+}
+
+
+/* Medium-to-Large screens */
+
+@media(min-width: 900px) and (max-width: 1049px){
+    
+}
+
+
+/* Large screens */
+
+@media(min-width: 1050px){
+    
 }

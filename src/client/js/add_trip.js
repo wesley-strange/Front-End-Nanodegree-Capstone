@@ -1,35 +1,59 @@
+/**
+ * @description Adds new trip to the webpage using information input by user
+ *   and returned by the APIs.
+ * @param {string} dest: destination
+ * @param {string} start: start date of trip
+ * @param {Array} weath: current or forecasted weather
+ * @param {string} image: url of image to display for trip
+ * @param {number} days_diff: number of days until trip start date
+ */
 function addTrip(dest, start, weath, image, days_diff) {
-    var id_num = Math.random();
+    //generates a random trip_id between 0 and 1 used to remove trip if needed
+    const trip_id = Math.random();
 
-    //initialize new DocumentFragment to build new trip
+    //initialize new DocumentFragment to build new trip post
     let trip_frag = new DocumentFragment();
 
     //create trip post div
     let trip_div = document.createElement('div');
     trip_div.classList.add("trip_post");
-    trip_div.classList.add(id_num);
+    trip_div.classList.add(trip_id);
 
-    //append image to the new trip div
+    /**
+     * Build left section for trip post
+     * - Create image div
+     */
     let image_div = document.createElement('div');
     image_div.classList.add("left");
 
     let image_pic = document.createElement('img');
     image_pic.setAttribute("src", image);
-    image_pic.setAttribute("height", "300");
-    image_pic.setAttribute("width", "450");
+    //image_pic.setAttribute("height", "300");
+    //image_pic.setAttribute("width", "450");
 
     image_div.appendChild(image_pic);
     trip_div.appendChild(image_div);
 
-
-    //append details to the new trip div
+    /**
+     * Build right section for trip post
+     * - Create details div
+     * - Create destination details div
+     * - Create start date div
+     * - Create countdown div
+     *   > Show how many days the trip is away
+     *   > Display an expired message if trip is in the past
+     * - Create weather div
+     * - Create button div
+     * - Finally, append the new tirp post to the trip_frag document
+     */
     let details_div = document.createElement('div');
     details_div.classList.add("right");
 
     let destination = document.createElement('div');
     destination.classList.add("trip");
+
     let dest_name = document.createElement('h2');
-    dest_name.textContent = "Upcoming trip to: " + dest.placename;
+    dest_name.textContent = "Trip to " + dest.placename;
     destination.appendChild(dest_name);
     details_div.appendChild(destination);
 
@@ -40,7 +64,12 @@ function addTrip(dest, start, weath, image, days_diff) {
 
     let countdown = document.createElement('div');
     countdown.classList.add("trip");
-    countdown.textContent = "Only " + days_diff + " days away!!";
+    if (days_diff < 0) {
+        countdown.textContent = "Trip expired. Hope you had fun!!";
+    } else {
+        countdown.textContent = "Only " + days_diff + " days away!!";
+    }
+    
     details_div.appendChild(countdown);
 
     let weather = document.createElement('div');
@@ -51,8 +80,9 @@ function addTrip(dest, start, weath, image, days_diff) {
         for (i = 0; i < 5; i++) {
             if (i == 0) {
                 text = text + weath[i];
+            } else {
+                text = text + "\n" + weath[i]
             }
-            text = text + "\n" + weath[i]
         }
         weather.innerText = "Upcoming forecast: \n" + text;
     } else {
@@ -66,7 +96,7 @@ function addTrip(dest, start, weath, image, days_diff) {
     let button = document.createElement('input');
     button.setAttribute("type", "submit");
     button.setAttribute("value", "Remove Trip");
-    button.setAttribute("id", id_num);
+    button.setAttribute("id", trip_id);
     button.addEventListener('click', function(event) {
         Client.removeTrip(this)
     })
