@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "Wesley Strange",
   "license": "ISC",
-  "description": "",
+  "description": "The goal of this project was to put all of our skills to the test to create a travel website that allows users to add / remove upcoming trips to the website. The application uses 3 APIs to gather the weather and image information that is presented on the screen.",
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "axios": "^0.19.2",
