@@ -20,11 +20,11 @@ function addTrip(dest, start, weath, image, days_diff) {
     trip_div.classList.add(trip_id);
 
     /**
-     * Build left section for trip post
+     * Build image section for trip post
      * - Create image div
      */
     let image_div = document.createElement('div');
-    image_div.classList.add("left");
+    image_div.classList.add("image");
 
     let image_pic = document.createElement('img');
     image_pic.setAttribute("src", image);
@@ -35,7 +35,7 @@ function addTrip(dest, start, weath, image, days_diff) {
     trip_div.appendChild(image_div);
 
     /**
-     * Build right section for trip post
+     * Build details section for trip post
      * - Create details div
      * - Create destination details div
      * - Create start date div
@@ -47,7 +47,7 @@ function addTrip(dest, start, weath, image, days_diff) {
      * - Finally, append the new tirp post to the trip_frag document
      */
     let details_div = document.createElement('div');
-    details_div.classList.add("right");
+    details_div.classList.add("details");
 
     let destination = document.createElement('div');
     destination.classList.add("trip");
