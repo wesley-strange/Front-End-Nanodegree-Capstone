@@ -1,1 +1,0 @@
-body{display:flex;flex-direction:column;min-height:100vh}main{flex:2}section{max-width:800px;margin:25px auto}footer{text-align:center}form{border:1px solid #545454;border-radius:3px;padding:10px 20px}input{padding:5px 20px;width:100%;line-height:16px;margin:10px 0;box-sizing:border-box}label{font-weight:700}header{display:flex;justify-content:space-between;padding:10px 40px}
