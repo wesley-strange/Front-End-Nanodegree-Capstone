@@ -1,17 +1,56 @@
 form {
-    border: 1px solid #545454;
-    border-radius: 3px;
-    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+    "left middle right";
+    background: #005580;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    align-items: end;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 
 input {
-    padding: 5px 20px;
     width: 100%;
-    line-height: 16px;
-    margin: 10px 0;
+    height: 25px;
     box-sizing: border-box;
+    &[type=date]:hover, &[type=text]:hover {
+        border: 2px solid lightskyblue;
+    }
+    &[type=text]::placeholder{
+        color: #ccc;
+    }
+    &[type=submit] {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        &:hover {
+            border: 2px solid lightskyblue;
+            box-shadow: 0 1px 2px 0 darkslategrey;
+            background: #dddddd;
+        }
+    }
+}
+
+.destination {
+    grid-area: left;
+}
+
+.start {
+    grid-area: middle;
+}
+
+.add_trip {
+    grid-area: right;
+}
+
+.form_item{
+    padding: 10px;
 }
 
 label {
     font-weight: bold;
+    color: white
 }

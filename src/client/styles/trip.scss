@@ -1,0 +1,113 @@
+
+/* Mobile first (less than 600px) */
+
+.trip_post {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 300px;
+    grid-template-areas:
+    "top"
+    "bottom";
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    justify-self: center;
+    box-shadow: 0 4px 8px 0 darkslategrey;
+    transition: 0.3s;
+    &:hover {
+        box-shadow: 0 8px 16px 0 darkslategrey;
+    }
+}
+
+.image {
+    grid-area: top;
+}
+
+.details {
+    grid-area: bottom;
+    display: grid;
+    width: 100%;
+    grid-template-rows: 50px 25px 25px 153px 1fr;
+}
+
+.trip {
+    margin-left: 15px
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Small screens */
+
+@media(min-width: 600px) and (max-width: 749px){
+    .trip_post {
+        height: 200px;
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+        "left right";
+        font-size: 10px;
+    }
+
+    .details {
+        grid-area: right;
+        display: grid;
+        width: 100%;
+        grid-template-rows: 50px 15px 15px 75px 1fr;
+    }
+
+    .image {
+        grid-area: left;
+    }
+}
+
+
+/* Medium screens */
+
+@media(min-width: 750px) and (max-width: 999px){
+    .trip_post {
+        height: 300px;
+        grid-template-columns: 450px 1fr;
+        grid-template-rows: 100%;
+        grid-template-areas:
+        "left right";
+    }
+
+    .details {
+        grid-area: right;
+        display: grid;
+        width: 100%;
+        grid-template-rows: 50px 25px 25px 153px 1fr;
+    }
+
+    .image {
+        grid-area: left;
+    }
+}
+
+
+/* Medium screens */
+
+@media(min-width: 1000px) {
+    .trip_post {
+        height: 400px;
+        grid-template-columns: 600px 1fr;
+        grid-template-rows: 100%;
+        grid-template-areas:
+        "left right";
+    }
+
+    .details {
+        grid-area: right;
+        display: grid;
+        width: 100%;
+        grid-template-rows: 50px 25px 25px 253px 1fr;
+    }
+
+    .image {
+        grid-area: left;
+    }
+}

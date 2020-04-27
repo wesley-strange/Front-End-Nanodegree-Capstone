@@ -16,11 +16,12 @@ const axios = require('axios');
 
 console.log(__dirname);
 
+
+
 app.post("/geo", function (req, res) {
-    let postalcode = req.body.postalcode
     let placename = req.body.placename
     let countrybias = "US"
-    let url = `http://api.geonames.org/postalCodeSearchJSON?&postalcode=${postalcode}&placename=${placename}&countryBias=${countrybias}&operator=AND&lang=en&maxRows=1&username=${process.env.GEO_API_ID}`
+    let url = `http://api.geonames.org/searchJSON?&q=${placename}&countryBias=US&orderby=relevance&operator=AND&lang=en&maxRows=1&username=${process.env.GEO_API_ID}`
 
     console.log(url)
     axios.get(url)
@@ -31,6 +32,44 @@ app.post("/geo", function (req, res) {
     .catch(function (error) {
         // handle error
         console.log(error);
+    })
+})
+
+app.post("/weather", function (req, res) {
+    let longitude = req.body.longitude;
+    let latitude = req.body.latitude;
+    let api = req.body.api;
+    let url = "";
+
+    if (api == "current") {
+        url = `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_KEY}`
+    } else {
+        url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_KEY}`
+    }
+    
+    console.log(url)
+    axios.get(url)
+    .then(function(response) {
+        console.log(response.data)
+        res.send(response.data)
+    })
+    .catch(function (error) {
+        console.log(error); // handle error
+    })
+})
+
+app.post("/pixabay", function (req, res) {
+    let placename = req.body.placename
+    let url = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=${placename}&image_type=photo&orientation=horizontal&per_page=3`
+
+    console.log(url)
+    axios.get(url)
+    .then(function(response) {
+        console.log(response.data)
+        res.send(response.data)
+    })
+    .catch(function (error) {
+        console.log(error); // handle error
     })
 })
 

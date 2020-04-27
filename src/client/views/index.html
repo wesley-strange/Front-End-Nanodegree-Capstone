@@ -1,48 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Front-End Developer Capstone Project</title>
-    </head>
-    <body>
-
-        <header>
-            <div class="">
-                Capstone Project
-            </div>
-            <div class="">
-                By: Wesley Strange
-            </div>
+<head>
+    <meta charset="utf-8">
+    <title>Front-End Developer Capstone Project</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header box">
+            <h1>Trip Planner</h1>
         </header>
-
-        <main>
-            <section>
+        <div class="cover box"></div>
+        <main class="content box">
+            <section class="form box">
                 <form class="">
-                    <label for="destination">Enter Destination Details:</label>
-                    <input id="destination" type="text" name="input" value="" placeholder="Chicago IL US">
-                    <label for="zip">Enter Destination Postal Code:</label>
-                    <input id="zip" type="text" name="input" value="" placeholder="61422">
-                    <label for="start">Travel Start:</label>
-                    <input id="start" type="date" name="input" value="">
-                    <label for="end">Travel End:</label>
-                    <input id="end" type="date" name="input" value="">
-                    <input id="submit" type="submit" name="" value="submit">
+                    <div class="form_item">
+                        <label for="destination">Destination:</label>
+                        <input id="destination" type="text" name="input" value="" placeholder="Chicago">
+                    </div>
+                    <div class="form_item">
+                        <label for="start">Travel Start:</label>
+                        <input id="start" type="date" name="input" value="">
+                    </div>
+                    <div class="form_item">
+                        <input id="add_trip" type="submit" name="" value="Add Trip">
+                    </div>
                 </form>
             </section>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results">
-                    <div id = "url"></div>
-                    <div id = "polarity"></div>
-                    <div id = "subjectivity"></div>
-                    <div id = "errors"></div>
-                </div>
+            <section id="trip_grid">
             </section>
         </main>
-
-        <footer>
-            <p>Thanks for visiting my website!</p>
+        <footer class="footer box">
+            <h3>Never stop exploring!</h3>
         </footer>
-    </body>
+    </div>
+</body>
 </html>
